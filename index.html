@@ -1,9 +1,11 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Course Tracker הדמיה</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap">
 <style>
 /* Layout: white report-style product (reference: the user's "תמונת מצב חיילית" PDF) — sticky header with unit emblems, black section bars, KPI cards, SVG charts; bottom nav on phones, side nav on desktop.
    Palette: red / black / white base, turquoise as a restrained accent. Team colours are fixed tokens (--t1..--t4) used identically in every chart. */
+html{direction:rtl}
 :root{--red:#c8202f;--red-soft:#fbe9ea;--ink:#111417;--ink2:#4a5058;--muted:#7a828b;--paper:#ffffff;--bg:#f5f5f6;--line:#e4e5e8;--line2:#eef0f2;--turq:#0e9f9c;--turq-soft:#e3f5f4;--good:#2b7a4b;--good-soft:#e5f2ea;--bad:#a8381f;--bad-soft:#f8e8e3;--warn:#8a6a12;--warn-soft:#fbf1d6;--bar:#1d2124;--bar-ink:#fff;
 --t1:#c8202f;--t2:#1d2124;--t3:#0e9f9c;--t4:#8b97a4;--il-bg:#2b1d4a;--il-ink:#efe8ff;--shadow:0 1px 2px rgba(17,20,23,.05);--grid:#e9eaed;--d1:#4a5058;--d2:#b4bcc6}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--red:#ee4b57;--red-soft:#3a1f22;--ink:#eceff1;--ink2:#b5bcc3;--muted:#8a939c;--paper:#161a1e;--bg:#0d1013;--line:#2a3036;--line2:#20262b;--turq:#3cc7c4;--turq-soft:#12302f;--good:#5cc489;--good-soft:#14301f;--bad:#ff9a85;--bad-soft:#3a201a;--warn:#e3bf62;--warn-soft:#332a10;--bar:#232a30;--t1:#ee4b57;--t2:#e3e7ea;--t3:#3cc7c4;--t4:#8fa1b3;--il-bg:#3a2a63;--grid:#242b31;--d1:#b5bcc3;--d2:#5d6872;color-scheme:dark}}
@@ -51,8 +53,8 @@ h2.t{font-size:18px;margin:16px 0 4px;font-weight:700}p.sub{margin:0 0 10px;colo
 .kpi .l{font-size:13px;color:var(--ink2);margin-top:2px}.kpi .d{font-size:12px;color:var(--muted);margin-top:4px}
 .kpi .ic{position:absolute;top:10px;left:10px;width:30px;height:30px;border-radius:9px;background:var(--red-soft);color:var(--red);display:grid;place-items:center}.kpi .ic.tq{background:var(--turq-soft);color:var(--turq)}.kpi .ic svg{width:18px;height:18px}
 .kpi:hover{border-color:var(--ink2)}
-.il{display:inline-block;font-size:10.5px;font-weight:500;background:var(--il-bg);color:var(--il-ink);border-radius:7px;padding:1px 7px;margin-inline-start:6px;vertical-align:middle;white-space:nowrap}
-.ex{display:inline-block;font-size:10.5px;font-weight:500;background:var(--turq-soft);color:var(--turq);border-radius:7px;padding:1px 7px;margin-inline-start:6px;vertical-align:middle;white-space:nowrap}
+.il{display:inline-block;font-size:12px;font-weight:500;background:var(--il-bg);color:var(--il-ink);border-radius:7px;padding:1px 7px;margin-inline-start:6px;vertical-align:middle;white-space:nowrap}
+.ex{display:inline-block;font-size:12px;font-weight:500;background:var(--turq-soft);color:var(--turq);border-radius:7px;padding:1px 7px;margin-inline-start:6px;vertical-align:middle;white-space:nowrap}
 .notice{background:var(--warn-soft);color:var(--warn);border-radius:12px;padding:10px 12px;font-size:13px;margin-bottom:12px}
 .bullets{margin:0;padding:0 18px 0 0;font-size:14px}.bullets li{margin:4px 0}.lead{border-inline-start:4px solid var(--red)}
 .seg{display:flex;gap:6px;overflow-x:auto;padding:2px;margin:8px 0;-webkit-overflow-scrolling:touch}
@@ -70,7 +72,7 @@ dl{display:grid;grid-template-columns:120px 1fr;gap:6px 12px;margin:0}dt{color:v
 .msg{margin-top:8px;font-size:14px}.msg.ok{color:var(--good)}.msg.err{color:var(--bad)}
 .row2{display:grid;gap:10px;grid-template-columns:1fr}@media(min-width:600px){.row2{grid-template-columns:1fr 1fr}}
 .bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
-svg.ch{width:100%;max-width:640px;margin-inline:auto;height:auto;display:block;overflow:visible}svg.ch text{font-family:'Heebo',Arial,sans-serif;fill:var(--ink2)}
+svg.ch{direction:ltr;width:100%;max-width:640px;margin-inline:auto;height:auto;display:block;overflow:visible}svg.ch text{font-family:'Heebo',Arial,sans-serif;fill:var(--ink2)}
 svg.ch .clk{cursor:pointer}svg.ch .clk:focus-visible{outline:none}svg.ch .clk:focus-visible rect.fo,svg.ch .clk:focus-visible circle.fo{stroke:var(--turq);stroke-width:3}
 .legend{display:flex;gap:6px 14px;flex-wrap:wrap;font-size:12px;color:var(--ink2);margin:6px 0}.legend span{display:inline-flex;align-items:center;gap:5px}
 .tl{position:relative;margin:0;padding:0 18px 0 0;list-style:none}.tl::before{content:"";position:absolute;right:5px;top:6px;bottom:6px;width:2px;background:var(--line)}
@@ -105,9 +107,49 @@ svg.ch .clk{cursor:pointer}svg.ch .clk:focus-visible{outline:none}svg.ch .clk:fo
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:60;width:min(92vw,520px);background:var(--ink);color:var(--paper);border-radius:14px;padding:10px 12px;display:none;box-shadow:0 8px 30px rgba(0,0,0,.3)}.toast.on{display:block}
 @media(min-width:1000px){.toast{bottom:24px}}.toast .tmsg{font-weight:500;font-size:14px}.toast .tbtns{display:flex;gap:8px;align-items:center;margin-top:8px}.toast button{min-height:38px;font-size:14px}.toast button.sec{background:#ffffff24;color:var(--paper)}.toast .link{color:var(--paper)}.toast .mini{color:#cdd3d8}
 .lockedsol{background:var(--line2);border-radius:10px;padding:10px 12px;display:flex;gap:8px;align-items:center;justify-content:space-between}
+/* ===== Mobile-first adaptation (round 6): real font sizes, no shrinking/zoom ===== */
+.filters .fhead{display:none}.filters .fbody{display:flex;gap:8px;flex-wrap:wrap;align-items:center;flex:1}
+@media(max-width:700px){
+ body{font-size:16px}
+ .demo{flex-wrap:nowrap;gap:6px;padding-top:5px;padding-bottom:5px;font-size:13px}.demo .dmsg{flex:1;min-width:0;white-space:nowrap}.demo .dtxt{display:none}
+ .demo button{min-height:40px;min-width:44px;font-size:13px;padding:0 10px;flex:none}
+ header.top{padding-top:6px;padding-bottom:6px}.hd,.brand{gap:10px}.emblems{gap:5px}.emblems img{height:34px}
+ .brand h1{font-size:18px}.brand p{font-size:13px;margin-top:0}
+ .shell{padding-top:10px;padding-bottom:150px}
+ .bar-h{font-size:17px;padding:12px 14px}.bar-h small{font-size:13px}
+ .card h3{font-size:17px}p.sub{font-size:14px}h2.t{font-size:19px}
+ .kpi .n{font-size:30px}.kpi .l{font-size:14px}.kpi .d{font-size:13px}
+ .il,.ex{font-size:12px;padding:2px 8px}.badge{font-size:13px}.notice{font-size:14px}.bullets{font-size:15px}
+ .legend{font-size:13px;gap:8px 16px}.mini{font-size:13px}.foot{font-size:13px}.lock,.rolebar{font-size:13px}
+ label,dt{font-size:14px}.hint{font-size:13px}.err{font-size:14px}
+ th{font-size:13px}table.resp td{font-size:15px;padding:6px 6px;min-height:32px}table.resp td::before{font-size:13px}
+ .seg button{min-height:44px;font-size:15px;padding:0 16px}.chip{min-height:44px;font-size:14px}
+ button.link{min-height:44px;font-size:15px}
+ /* filters: collapsible */
+ .filters{flex-direction:column;align-items:stretch;gap:0;padding:0}
+ .filters .fhead{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-height:52px;background:none;color:var(--ink);border-radius:14px;padding:0 14px;font-size:15px;font-weight:500;text-align:right}
+ .filters .fhead .fsum{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.filters .fhead svg{flex:none;transition:transform .2s}.filters.open .fhead svg{transform:rotate(180deg)}
+ .filters .fbody{display:none;flex-direction:column;gap:8px;padding:0 12px 12px}.filters.open .fbody{display:flex}
+ .filters select{width:100%;min-height:48px;font-size:16px}.filters .fbody .grow{order:9}
+ /* forms & sheets: finger friendly */
+ input,select,textarea{min-height:48px;font-size:16px}
+ .sheet{max-height:92vh;max-height:92dvh}.sheet button{min-height:48px}.sheet .sheet-h button{min-width:48px}
+ .sheet .sheet-list button{min-height:56px!important;font-size:16px}.sheet-h h3{font-size:19px}
+ .toast .tmsg{font-size:15px}.toast button{min-height:44px;font-size:15px}
+ /* nav */
+ .bnav button{font-size:12px;min-height:58px}.bnav svg{width:24px;height:24px}
+ /* add button: round, icon only, hides while scrolling down so it never covers data */
+ .fab{width:58px;height:58px;padding:0;justify-content:center;border-radius:50%;bottom:calc(74px + env(safe-area-inset-bottom,0px));transition:transform .2s ease,opacity .2s}.fab span{display:none}
+ .fab.away{transform:translateY(140px);opacity:0;pointer-events:none}
+ .entry .big{min-height:52px}
+ #view button,.sheet button,.demo button{min-height:44px!important}
+ input[type=checkbox]{width:26px;height:26px;min-height:0!important;flex:none;margin-inline-end:10px}
+ label:has(input[type=checkbox]){display:flex;align-items:center;min-height:48px;font-size:15px}
+}
+@media(max-width:359px){.kpis{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
-<div class="demo" role="note"><span><b>הדמיה בלבד</b> · נתוני דמה · אין חיבור לגוגל · שינויים נשמרים רק בדף הזה</span><button id="role" type="button" class="rolechip" aria-label="החלפת תצוגה">תצוגת מ״פ</button><button id="reset" type="button">אפס</button><button id="theme" type="button" aria-label="מצב תצוגה">בהיר/כהה</button></div>
+<div class="demo" role="note"><span class="dmsg"><b>הדמיה בלבד</b><span class="dtxt"> · נתוני דמה · אין חיבור לגוגל · שינויים נשמרים רק בדף הזה</span></span><button id="role" type="button" class="rolechip" aria-label="החלפת תצוגה">תצוגת מ״פ</button><button id="reset" type="button">אפס</button><button id="theme" type="button" aria-label="מצב תצוגה">בהיר/כהה</button></div>
 <header class="top"><div class="hd">
  <div class="brand"><div class="emblems" aria-label="סמלי היחידה (כפי שסופקו)"><img id="em1" alt="סמל 1"><img id="em2" alt="סמל 2"><img id="em3" alt="סמל 3"></div><div><h1>Course Tracker</h1><p id="hsub">לוח מעקב קורס · הדמיה</p></div></div>
  <div class="hdr-meta"><span>נתונים נכונים ל־</span><b id="asof"></b></div>
@@ -134,7 +176,7 @@ function fx(v,d){return v===null||v===undefined?'—':(d===0?String(r0(v)):Strin
 function clamp(x,a,b){return Math.max(a,Math.min(b,x));}
 function sgn(v){return (v>0?'+':v<0?'−':'')+Math.abs(r1(v));}
 /* ---------- icons ---------- */
-var IC={plus:'M12 5v14M5 12h14',home:'M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z',cmp:'M5 21V10M12 21V4M19 21v-8',ppl:'M16 11a3 3 0 1 0-3-3 3 3 0 0 0 3 3zM8 12a3 3 0 1 0-3-3 3 3 0 0 0 3 3zM2 20c0-3 3-5 6-5s6 2 6 5M14 15c3 0 8 1 8 5',menu:'M4 6h16M4 12h16M4 18h16',fit:'M4 12h3l2-6 4 12 2-6h5',tgt:'M12 3a9 9 0 1 0 9 9M12 7a5 5 0 1 0 5 5M12 11a1 1 0 1 0 1 1M12 2v4M12 18v4M2 12h4M18 12h4',nav:'M12 2l4 9-4 11-4-11zM12 8v4',book:'M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h10',cal:'M4 6h16v14H4zM4 10h16M8 3v4M16 3v4',flag:'M5 21V4M5 4h11l-2 4 2 4H5',cert:'M12 3l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z',heart:'M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z',note:'M5 3h11l3 3v15H5zM8 9h8M8 13h8M8 17h5',doc:'M7 3h8l4 4v14H7zM15 3v4h4',rep:'M4 20V8M10 20V4M16 20v-9M22 20H2',db:'M4 6c0-2 16-2 16 0v12c0 2-16 2-16 0zM4 12c0 2 16 2 16 0M4 6c0 2 16 2 16 0',info:'M12 8h.01M11 12h1v5h1M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z',bell:'M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7zM10 20h4',lock:'M6 11h12v9H6zM8 11V8a4 4 0 0 1 8 0v3',x:'M6 6l12 12M18 6L6 18',back:'M9 6l6 6-6 6',users:'M3 20c0-3 3-5 6-5s6 2 6 5M9 12a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z'};
+var IC={chev:'M6 9l6 6 6-6',plus:'M12 5v14M5 12h14',home:'M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z',cmp:'M5 21V10M12 21V4M19 21v-8',ppl:'M16 11a3 3 0 1 0-3-3 3 3 0 0 0 3 3zM8 12a3 3 0 1 0-3-3 3 3 0 0 0 3 3zM2 20c0-3 3-5 6-5s6 2 6 5M14 15c3 0 8 1 8 5',menu:'M4 6h16M4 12h16M4 18h16',fit:'M4 12h3l2-6 4 12 2-6h5',tgt:'M12 3a9 9 0 1 0 9 9M12 7a5 5 0 1 0 5 5M12 11a1 1 0 1 0 1 1M12 2v4M12 18v4M2 12h4M18 12h4',nav:'M12 2l4 9-4 11-4-11zM12 8v4',book:'M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h10',cal:'M4 6h16v14H4zM4 10h16M8 3v4M16 3v4',flag:'M5 21V4M5 4h11l-2 4 2 4H5',cert:'M12 3l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z',heart:'M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z',note:'M5 3h11l3 3v15H5zM8 9h8M8 13h8M8 17h5',doc:'M7 3h8l4 4v14H7zM15 3v4h4',rep:'M4 20V8M10 20V4M16 20v-9M22 20H2',db:'M4 6c0-2 16-2 16 0v12c0 2-16 2-16 0zM4 12c0 2 16 2 16 0M4 6c0 2 16 2 16 0',info:'M12 8h.01M11 12h1v5h1M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z',bell:'M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7zM10 20h4',lock:'M6 11h12v9H6zM8 11V8a4 4 0 0 1 8 0v3',x:'M6 6l12 12M18 6L6 18',back:'M9 6l6 6-6 6',users:'M3 20c0-3 3-5 6-5s6 2 6 5M9 12a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z'};
 function icon(n,sz){var v=s('svg',{viewBox:'0 0 24 24',fill:'none',stroke:'currentColor','stroke-width':'1.8','stroke-linecap':'round','stroke-linejoin':'round','aria-hidden':'true'});v.appendChild(s('path',{d:IC[n]||IC.info}));if(sz){v.style.width=sz+'px';v.style.height=sz+'px';}return v;}
 /* ---------- demo data (synthetic, deterministic) ---------- */
 function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
@@ -220,7 +262,9 @@ var C=CT,h=C.h,s=C.s,$=C.$,r1=C.r1,r0=C.r0,fx=C.fx,clamp=C.clamp,mean=C.mean;
 /* ---------- chart primitives ---------- */
 function svgc(w,hh,label){return s('svg',{viewBox:'0 0 '+w+' '+hh,'class':'ch',role:'img','aria-label':label||''});}
 function mkc(el,fn,label){if(!fn)return el;el.setAttribute('tabindex','0');el.setAttribute('role','button');if(label)el.setAttribute('aria-label',label);el.setAttribute('class',((el.getAttribute('class')||'')+' clk').trim());el.onclick=fn;el.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();fn();}};return el;}
-function txt(x,y,t,o){o=o||{};return s('text',{x:x,y:y,'font-size':o.sz||11,'text-anchor':o.a||'middle','font-weight':o.w||400,fill:o.f||null,'dominant-baseline':o.b||null,text:t});}
+C.TXK=function(){try{return window.matchMedia('(max-width:700px)').matches?1.3:(window.matchMedia('(max-width:1000px)').matches?1.25:1);}catch(e){return 1;}};
+C.MOB=function(){try{return window.matchMedia('(max-width:700px)').matches;}catch(e){return false;}};
+function txt(x,y,t,o){o=o||{};return s('text',{x:x,y:y,'font-size':Math.round((o.sz||11)*C.TXK()*10)/10,'text-anchor':o.a||'middle','font-weight':o.w||400,fill:o.f||null,'dominant-baseline':o.b||null,text:t});}
 function line(x1,y1,x2,y2,c,dash,w){return s('line',{x1:x1,y1:y1,x2:x2,y2:y2,stroke:c||'var(--grid)','stroke-width':w||1,'stroke-dasharray':dash||null});}
 function marker(shape,cx,cy,r,fill,stroke){var a={fill:fill,stroke:stroke||'var(--paper)','stroke-width':1.5};
  if(shape==='square'){a.x=cx-r;a.y=cy-r;a.width=2*r;a.height=2*r;a.rx=2;return s('rect',a);}
@@ -284,7 +328,7 @@ function scatter(pts,o){var W=340,H=290,pl=34,pr=14,pt=14,pb=34,v=svgc(W,H,o.lab
 /* radar: series [{name,color,vals,dash,w}], axes [labels] */
 function radar(series,axes,o){o=o||{};var W=340,H=o.h||270,cx=W/2,cy=H/2+4,R=o.R||88,rmin=o.min===undefined?40:o.min,n=axes.length;var v=svgc(W,H,o.label||'גרף מכ״ם');
  var P=function(i,val){var a=-Math.PI/2-i*2*Math.PI/n,rr=(clamp(val,rmin,100)-rmin)/(100-rmin)*R;return[cx+rr*Math.cos(a),cy+rr*Math.sin(a)];};
- [rmin,(rmin+100)/2,100].forEach(function(t,k){var pts=[];for(var i=0;i<n;i++)pts.push(P(i,t).join(','));v.appendChild(s('polygon',{points:pts.join(' '),fill:'none',stroke:'var(--grid)','stroke-width':1}));if(k)v.appendChild(txt(cx+3,P(0,t)[1]-2,r0(t),{a:'start',sz:9,f:'var(--muted)'}));});
+ [rmin,(rmin+100)/2,100].forEach(function(t,k){var pts=[];for(var i=0;i<n;i++)pts.push(P(i,t).join(','));v.appendChild(s('polygon',{points:pts.join(' '),fill:'none',stroke:'var(--grid)','stroke-width':1}));if(k)v.appendChild(txt(cx+3,P(0,t)[1]-2,r0(t),{a:'start',sz:10,f:'var(--muted)'}));});
  for(var i=0;i<n;i++){var e=P(i,100);v.appendChild(line(cx,cy,e[0],e[1]));var a=-Math.PI/2-i*2*Math.PI/n,lx=cx+(R+14)*Math.cos(a),ly=cy+(R+14)*Math.sin(a);v.appendChild(txt(lx,ly+3,axes[i],{a:Math.abs(Math.cos(a))<.2?'middle':(Math.cos(a)>0?'start':'end'),sz:11,f:'var(--ink)'}));}
  var miss=[];
  series.forEach(function(se){var pts=[],gap=false;for(var i=0;i<n;i++){var val=se.vals[i];if(val===null||val===undefined){gap=true;if(!se.dash)miss.push((se.name||'')+': '+axes[i]);continue;}pts.push(P(i,val).join(','));}
@@ -301,7 +345,7 @@ function lines(series,xl,o){o=o||{};var W=340,H=o.h||210,pl=14,pr=34,pt=16,pb=28
   v.appendChild(s('polyline',{points:pts.map(function(p){return p[0]+','+p[1];}).join(' '),fill:'none',stroke:se.color,'stroke-width':se.w||2.4,'stroke-linejoin':'round','stroke-linecap':'round','stroke-dasharray':se.dash||null}));
   pts.forEach(function(p){var g=s('g');g.appendChild(marker(se.shape||'circle',p[0],p[1],4.5,se.color));g.appendChild(s('circle',{cx:p[0],cy:p[1],r:10,fill:'transparent'}));if(o.labels)g.appendChild(txt(p[0],p[1]-9,r0(p[3]),{sz:9.5,w:600,f:'var(--ink)'}));v.appendChild(mkc(g,se.fn?function(){se.fn(p[2]);}:null,se.name+' '+xl[p[2]]+': '+r1(p[3])));});});
  return v;}
-function donut(parts,o){o=o||{};var W=150,r=52,c=2*Math.PI*r,tot=parts.reduce(function(a,p){return a+p.v;},0)||1,off=0;var v=svgc(W,W,o.label||'התפלגות');v.style.maxWidth='170px';
+function donut(parts,o){o=o||{};var W=150,r=52,c=2*Math.PI*r,tot=parts.reduce(function(a,p){return a+p.v;},0)||1,off=0;var v=svgc(W,W,o.label||'התפלגות');v.style.maxWidth=C.MOB()?'240px':'170px';
  v.appendChild(s('circle',{cx:75,cy:75,r:r,fill:'none',stroke:'var(--line2)','stroke-width':18}));
  parts.forEach(function(p){var len=p.v/tot*c;if(len<=0)return;var g=s('circle',{cx:75,cy:75,r:r,fill:'none',stroke:p.color,'stroke-width':18,'stroke-dasharray':len+' '+(c-len),'stroke-dashoffset':-off,transform:'rotate(-90 75 75)'});off+=len;v.appendChild(mkc(g,p.fn,p.label+' '+p.v));});
  v.appendChild(txt(75,74,String(o.center===undefined?tot:o.center),{sz:26,w:800,f:'var(--ink)'}));v.appendChild(txt(75,92,o.cl||'',{sz:10.5,f:'var(--muted)'}));return v;}
@@ -342,7 +386,8 @@ function filterBar(){var f=C.F;var dsel=h('select',{'aria-label':'מחלקה'},[
  var tsel=h('select',{'aria-label':'צוות'},[h('option',{value:'',text:'כל הצוותים'})].concat(C.roleTeams().filter(function(t){return !f.dep||t.d===f.dep;}).map(function(t){return h('option',{value:t.id,text:t.n});})));tsel.value=f.team;
  var csel=h('select',{'aria-label':'קורס'},[h('option',{text:'קורס דמה (יחיד)'})]);csel.disabled=true;
  dsel.onchange=function(){f.dep=dsel.value;if(f.team&&C.team(f.team).d!==f.dep&&f.dep)f.team='';render();};tsel.onchange=function(){f.team=tsel.value;render();};
- var n=C.scopeSol().length;return h('div',{'class':'filters'},[csel,C.visibleDeps().length>1?dsel:null,C.roleTeams().length>1?tsel:null,h('span',{'class':'grow mini',text:n+' חיילים פעילים בסינון'}),(f.dep||f.team)?h('button',{type:'button','class':'link',onclick:function(){f.dep='';f.team='';render();},text:'נקה סינון'}):null]);}
+ var n=C.scopeSol().length;var parts=['קורס דמה'];if(f.dep)parts.push(C.dep(f.dep).n);if(f.team)parts.push(C.team(f.team).n);parts.push(n+' חיילים');
+ var fb=h('div',{'class':'filters'+(C.F.open?' open':'')},[h('button',{type:'button','class':'fhead','aria-expanded':C.F.open?'true':'false',onclick:function(){C.F.open=!C.F.open;fb.classList.toggle('open',!!C.F.open);fb.querySelector('.fhead').setAttribute('aria-expanded',C.F.open?'true':'false');}},[h('span',{'class':'fsum',text:'מסננים · '+parts.join(' · ')}),C.icon('chev',20)]),h('div',{'class':'fbody'},[csel,C.visibleDeps().length>1?dsel:null,C.roleTeams().length>1?tsel:null,h('span',{'class':'grow mini',text:n+' חיילים פעילים בסינון'}),(f.dep||f.team)?h('button',{type:'button','class':'link',onclick:function(){f.dep='';f.team='';render();},text:'נקה סינון'}):null])]);return fb;}
 /* ---------- team detail sheet ---------- */
 function teamSheet(tid){var T=C.team(tid),L=C.activeSol().filter(function(x){return x.team===tid;}),all=C.activeSol();
  var kids=[];kids.push(card([h('div',{style:'display:flex;gap:10px;align-items:center'},[mk(T),h('b',{text:T.n+' · '+C.dep(T.d).n}),h('span',{'class':'mini',text:L.length+' חיילים פעילים'})])]));
@@ -409,13 +454,13 @@ function sCompare(v){v.appendChild(filterBar());v.appendChild(barH('השוואו
  if(S.cmp==='teams'){
   var c=card(ctitle('טבלת השוואה','','▲ = מעל ממוצע הקורס · ▼ = מתחת לממוצע הקורס (השוואה לקורס, לא מגמה בזמן) · ★ = הגבוה ביותר בעמודה'));c.appendChild(h('p',{'class':'sub'},[il('הדגשת ★ וצבעים — בלי ספי הצלחה'),h('span',{text:' '})]));
   var rows=VT.map(function(t){return{c:[h('span',{style:'display:inline-flex;gap:6px;align-items:center'},[mk(t),t.n]),null,null,null,null,null].map(function(x,i){if(i===0)return x;var k=ks[i-1],m=C.teamStat(t.id,k).m,cm=C.courseMean(k),star=starCol(k)===t.id?' ★':'';return{n:m===null?'—':(m>=cm?'▲ ':'▼ ')+fx(m,0)+star,cls:m===null?'':(m>=cm?'pos':'neg')};}),fn:function(){teamSheet(t.id);}};});
-  c.appendChild(tbl(['צוות'].concat(ks.map(function(k){return DOMC[k]+(k==='fit'?'*':'');})),rows,false));c.appendChild(h('p',{'class':'foot',text:'* כש״ג: המחשה. ממוצע קורס: '+ks.map(function(k){return DOMC[k]+' '+fx(C.courseMean(k),0);}).join(' · ')}));v.appendChild(c);
+  c.appendChild(tbl(['צוות'].concat(ks.map(function(k){return DOMC[k]+(k==='fit'?'*':'');})),rows));c.appendChild(h('p',{'class':'foot',text:'* כש״ג: המחשה. ממוצע קורס: '+ks.map(function(k){return DOMC[k]+' '+fx(C.courseMean(k),0);}).join(' · ')}));v.appendChild(c);
   var g=h('div',{'class':'grid g2'});var cr=card(ctitle('פרופיל לפי תחום',il()));cr.appendChild(CH.radar([{name:'קורס',color:'var(--muted)',dash:'5 4',w:1.5,vals:ks.map(function(k){return C.courseMean(k);})}].concat(VT.map(function(t){return{name:t.n,color:t.c,shape:t.m,vals:ks.map(function(k){return C.teamStat(t.id,k).m;})};})),ks.map(function(k){return DOMC[k];}),{label:'מכ״ם'}));cr.appendChild(legend());g.appendChild(cr);
   var cg=card([]);cg.appendChild(h('h3',{text:'פער מהממוצע'}));cg.appendChild(seg(ks.map(function(k){return[k,DOMC[k]];}),S.dm,function(k){S.dm=k;render();}));cg.appendChild(CH.diverge(VT.map(function(t){var m=C.teamStat(t.id,S.dm).m;return{label:t.n,value:m===null?null:m-C.courseMean(S.dm),fn:function(){teamSheet(t.id);}};}),{refLabel:'הקורס '+fx(C.courseMean(S.dm)),label:'פער מהממוצע'}));g.appendChild(cg);v.appendChild(g);
  }
  if(S.cmp==='deps'){var Ds=C.visibleDeps().filter(function(d){return !C.F.dep||d.id===C.F.dep;});
   var c2=card(ctitle('השוואת מחלקות לפי תחום','','ממוצע על כלל חיילי המחלקה'));c2.appendChild(CH.gbars(ks.map(function(k){return{label:DOMC[k]};}),Ds.map(function(d){return{name:d.n,color:DEPC[d.id],vals:ks.map(function(k){return C.stat(C.activeSol().filter(function(x){return C.team(x.team).d===d.id;}),k).m;})};}),{min:40,label:'מחלקות'}));c2.appendChild(h('div',{'class':'legend'},Ds.map(function(d){return h('span',null,[dot(DEPC[d.id]),d.n]);})));v.appendChild(c2);
-  var c3=card(ctitle('צוותים בתוך כל מחלקה'));Ds.forEach(function(d){c3.appendChild(h('p',{'class':'sub',text:d.n}));c3.appendChild(tbl(['צוות','ניווט','קליעה','מבחנים'],C.roleTeams().filter(function(t){return t.d===d.id;}).map(function(t){return{c:[t.n,fx(C.teamStat(t.id,'nav').m),fx(C.teamStat(t.id,'mk').m),fx(C.teamStat(t.id,'exam').m)],fn:function(){teamSheet(t.id);}};}),false));});v.appendChild(c3);}
+  var c3=card(ctitle('צוותים בתוך כל מחלקה'));Ds.forEach(function(d){c3.appendChild(h('p',{'class':'sub',text:d.n}));c3.appendChild(tbl(['צוות','ניווט','קליעה','מבחנים'],C.roleTeams().filter(function(t){return t.d===d.id;}).map(function(t){return{c:[t.n,fx(C.teamStat(t.id,'nav').m),fx(C.teamStat(t.id,'mk').m),fx(C.teamStat(t.id,'exam').m)],fn:function(){teamSheet(t.id);}};})));});v.appendChild(c3);}
  if(S.cmp==='doms'){var c4=card(ctitle('צוותים לפי תחום','','לחיצה על קבוצת עמודות — מסך התחום'));c4.appendChild(CH.gbars(ks.map(function(k){return{label:DOMC[k]+(k==='fit'?'*':''),fn:function(){C.go(k==='qual'?'quals':k==='nav'?'nav':k==='mk'?'shooting':k==='exam'?'exams':'fitness');}};}),VT.map(function(t){return{name:t.n,color:t.c,vals:ks.map(function(k){return C.teamStat(t.id,k).m;})};}),{min:40,vals:false,label:'תחומים לפי צוות'}));c4.appendChild(legend());v.appendChild(c4);
   var c5=card(ctitle('תחומים שבהם נדרשת תשומת לב',il('מיון לפי ממוצע נמוך — ללא סף'),'הממוצע הנמוך ביותר בראש הרשימה'));var ord=ks.map(function(k){return{k:k,m:C.courseMean(k)};}).sort(function(a,b){return a.m-b.m;});c5.appendChild(CH.hbars(ord.map(function(o){return{label:DOMC[o.k],value:o.m,color:'var(--red)',fn:function(){C.go(o.k==='qual'?'quals':o.k==='nav'?'nav':o.k==='mk'?'shooting':o.k==='exam'?'exams':'fitness');}};}),{label:'תחומים'}));v.appendChild(c5);}
  if(S.cmp==='time'){
@@ -424,7 +469,7 @@ function sCompare(v){v.appendChild(filterBar());v.appendChild(barH('השוואו
   function at(t,d){return mean(recs.filter(function(r){return r.date===d&&C.sol(r.sid).team===t.id;}).map(val));}
   c6.appendChild(h('p',{'class':'sub',text:'ממוצע צוות בכל מועד (חסר מידע — לא מצויר) · הישן מימין'}));
   c6.appendChild(CH.lines(VT.map(function(t){return{name:t.n,color:t.c,shape:t.m,vals:dts.map(function(d){return at(t,d);}),fn:function(){teamSheet(t.id);}};}),dts.map(function(d){return d.slice(5).split('-').reverse().join('/');}),{label:'מגמות'}));c6.appendChild(legend());v.appendChild(c6);
-  var c7=card(ctitle('שינוי בין המועד הראשון לאחרון',il('"יציב" = שינוי עד 1 נק׳ (המחשה)')));c7.appendChild(tbl(['צוות','ראשון','אחרון','שינוי','מגמה'],VT.map(function(t){var s0=dts.map(function(d){return at(t,d);}).filter(function(x){return x!==null;}),a=s0.length?s0[0]:null,b=s0.length?s0[s0.length-1]:null,d=a===null||s0.length<2?null:b-a,tr=d===null?'אין מספיק נתונים':d>1?'שיפור':d<-1?'ירידה':'יציב';return{c:[t.n,fx(a),fx(s0.length>1?b:null),{n:d===null?'—':C.sgn(d),cls:d===null?'':d>1?'pos':d<-1?'neg':'mid'},tr],fn:function(){teamSheet(t.id);}};}),false));v.appendChild(c7);}
+  var c7=card(ctitle('שינוי בין המועד הראשון לאחרון',il('"יציב" = שינוי עד 1 נק׳ (המחשה)')));c7.appendChild(tbl(['צוות','ראשון','אחרון','שינוי','מגמה'],VT.map(function(t){var s0=dts.map(function(d){return at(t,d);}).filter(function(x){return x!==null;}),a=s0.length?s0[0]:null,b=s0.length?s0[s0.length-1]:null,d=a===null||s0.length<2?null:b-a,tr=d===null?'אין מספיק נתונים':d>1?'שיפור':d<-1?'ירידה':'יציב';return{c:[t.n,fx(a),fx(s0.length>1?b:null),{n:d===null?'—':C.sgn(d),cls:d===null?'':d>1?'pos':d<-1?'neg':'mid'},tr],fn:function(){teamSheet(t.id);}};})));v.appendChild(c7);}
 }
 /* ---------- soldiers ---------- */
 var SQ='',SC=false;
@@ -546,7 +591,7 @@ function sReports(v){v.appendChild(filterBar());v.appendChild(barH('דוחות �
 /* backup */
 function sBackup(v){v.appendChild(barH('גיבויים ותפעול','',ex('קיים: גיבוי, שחזור, Preflight')));
  var pf=[['מבנה גיליונות','PASS','g'],['הרשאות מדיניות (Policy)','PASS','g'],['Web App','BLOCKED','r'],['OAuth / Lock','NOT_VERIFIED','y']];
- v.appendChild(card([h('h3',null,['בדיקת מוכנות (Preflight)',il('תוצאות דמה')]),h('p',{'class':'sub',text:'ב־v1.0.2 קיימים הסטטוסים PASS / FAIL / NOT_VERIFIED / BLOCKED. Web App ו־OAuth טרם נבדקו מול Google.'}),tbl(['בדיקה','סטטוס'],pf.map(function(p){return{c:[p[0],badge(p[1],p[2])]};}),false)]));
+ v.appendChild(card([h('h3',null,['בדיקת מוכנות (Preflight)',il('תוצאות דמה')]),h('p',{'class':'sub',text:'ב־v1.0.2 קיימים הסטטוסים PASS / FAIL / NOT_VERIFIED / BLOCKED. Web App ו־OAuth טרם נבדקו מול Google.'}),tbl(['בדיקה','סטטוס'],pf.map(function(p){return{c:[p[0],badge(p[1],p[2])]};}))]));
  var c=card(ctitle('גיבויים'));var msg=h('div',{'class':'msg'});c.appendChild(tbl(['זמן','סוג','פעולה'],D().backups.map(function(b){return{c:[b.at,b.kind==='daily'?'יומי':'ידני',h('button',{type:'button','class':'sec',style:'min-height:36px',onclick:function(){C.openSheet('שחזור גיבוי',[card([h('p',{text:'שחזור גיבוי מ־'+b.at+' יחליף את נתוני ההדמיה הנוכחיים בתמונת המצב של הגיבוי (מקומי בלבד).'}),h('div',{'class':'bar'},[h('button',{type:'button','class':'red',onclick:function(){var bk=D().backups,au=D().audit;var snap=b.snap?JSON.parse(b.snap):null;if(snap){snap.backups=bk;snap.audit=au;C.setD(snap);}else{var keep={bk:bk,au:au};C.reseed();D().backups=keep.bk;D().audit=keep.au;}D().audit.unshift({at:C.TODAY,actor:'מנהל (מ״פ)',action:'BACKUP_RESTORE'});C.closeSheet();render();},text:'שחזר'}),h('button',{type:'button','class':'sec',onclick:C.closeSheet,text:'ביטול'})])])]);},text:'שחזור'})]};})));
  c.appendChild(h('div',{'class':'bar'},[h('button',{type:'button','class':'red',onclick:function(){var d=D(),snap=JSON.stringify(d);d.backups.unshift({id:'bk'+(d.next++),at:C.TODAY+' '+new Date().toTimeString().slice(0,5),kind:'manual',snap:snap});d.audit.unshift({at:C.TODAY,actor:'מנהל (מ״פ)',action:'BACKUP_CREATE'});render();},text:'צור גיבוי ידני'})]));c.appendChild(h('p',{'class':'foot',text:'בהדמיה הגיבוי הוא תמונת מצב בזיכרון הדף; במערכת האמיתית — קובץ ב־Drive.'}));v.appendChild(c);
  var c2=card(ctitle('יומן פעולות (Audit)'));c2.appendChild(tbl(['זמן','מבצע','פעולה','סיבה'],D().audit.slice(0,12).map(function(a){return{c:[a.at,a.actor,a.action,a.reason||'—']};})));v.appendChild(c2);}
@@ -575,9 +620,11 @@ function menu(domains){var items=NAV.filter(function(it){return it[0]!=='G'&&(do
  if(!domains)kids.push(h('div',{'class':'sheet-list'},[h('button',{type:'button',onclick:roleSheet},[C.icon('lock'),'החלפת תצוגה: מ״פ / מפקד'])]));
  C.openSheet(domains?'תחומי הכשרה':'עוד',kids);}
 C.go=function(r,a){S.route=r;S.arg=a||null;try{location.hash='#/'+r+(a?'/'+a:'');}catch(e){}render();window.scrollTo(0,0);};
-C.render=function(){var v=$('view');var y=window.scrollY;v.innerHTML='';var f=C.screens[S.route]||C.screens.dash;f(v);v.appendChild(h('div',{'class':'foot',text:'הדמיה · נתוני דמה בלבד · אינו מוצר מבצעי'}));buildNav();if(C.fabSync)C.fabSync();$('asof').textContent=C.TODAY;var rc=$('role');rc.textContent=C.R.role==='owner'?'תצוגת מ״פ':'מפקד · '+C.scopeLabel();rc.className='rolechip '+(C.R.role==='owner'?'own':'cmd');$('hsub').textContent=(C.R.role==='owner'?'לוח מעקב קורס':'תצוגת מפקד · '+C.scopeLabel())+' · הדמיה';};
+C.render=function(){var v=$('view');var y=window.scrollY;v.innerHTML='';var f=C.screens[S.route]||C.screens.dash;f(v);v.appendChild(h('div',{'class':'foot',text:'הדמיה · נתוני דמה בלבד · אינו מוצר מבצעי'}));buildNav();if(C.fabSync)C.fabSync();var fb0=$('fab');if(fb0)fb0.classList.remove('away');$('asof').textContent=C.TODAY;var rc=$('role');rc.textContent=C.R.role==='owner'?'תצוגת מ״פ':'מפקד · '+C.scopeLabel();rc.className='rolechip '+(C.R.role==='owner'?'own':'cmd');$('hsub').textContent=(C.R.role==='owner'?'לוח מעקב קורס':'תצוגת מפקד · '+C.scopeLabel())+' · הדמיה';};
 function init(){var E=window.EMB||{};['em1','em2','em3'].forEach(function(k){if(E[k])$(k).src='data:image/jpeg;base64,'+E[k];});
- $('sbg').onclick=C.closeSheet;$('fab').onclick=function(){C.fabOpen();};$('fab').appendChild(C.icon('plus',24));$('fab').appendChild(h('span',{text:'הוסף'}));document.addEventListener('keydown',function(e){if(e.key==='Escape')C.closeSheet();});
+ (function(){var ly=window.scrollY||0,wasM=C.MOB();window.addEventListener('scroll',function(){var f=$('fab'),y=window.scrollY||0;if(!f)return;if(y>ly+6&&y>120)f.classList.add('away');else if(y<ly-4||y<=120)f.classList.remove('away');ly=y;},{passive:true});
+ window.addEventListener('resize',function(){var m=C.MOB();if(m!==wasM){wasM=m;C.render();}});})();
+$('sbg').onclick=C.closeSheet;$('fab').onclick=function(){C.fabOpen();};$('fab').appendChild(C.icon('plus',24));$('fab').appendChild(h('span',{text:'הוסף'}));document.addEventListener('keydown',function(e){if(e.key==='Escape')C.closeSheet();});
  $('role').onclick=roleSheet;$('reset').onclick=function(){C.reseed();C.F.dep='';C.F.team='';C.R.role='owner';C.S.route='dash';render();};
  $('theme').onclick=function(){var r=document.documentElement,c=r.getAttribute('data-theme');var dark=c?c==='dark':window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches;r.setAttribute('data-theme',dark?'light':'dark');};
  try{var m=location.hash.match(/^#\/([a-z]+)\/?([\w]*)/);if(m&&C.screens[m[1]]){S.route=m[1];S.arg=m[2]||null;}}catch(e){}
@@ -791,4 +838,4 @@ function lockScreen(t,why){return function(v){v.appendChild(barH(t));v.appendChi
 C.screens.reports=function(v){if(!ownerOnly())return lockScreen('דוחות וייצוא','יצירת דוחות שמורה למ״פ (report.generate)')(v);oR(v);};
 C.screens.backup=function(v){if(!ownerOnly())return lockScreen('גיבויים ותפעול','גיבוי, שחזור ויומן פעולות שמורים למ״פ')(v);oB(v);};
 })();
-CT.init();</script>
+document.documentElement.setAttribute("dir","rtl");document.documentElement.setAttribute("lang","he");CT.init();</script>
